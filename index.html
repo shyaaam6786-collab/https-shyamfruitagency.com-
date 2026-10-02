@@ -95,7 +95,7 @@ banana:"https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format
 orange:"https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&w=700&q=85",
 mango:"https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=700&q=85",
 grapes:"https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=700&q=85",
-pomegranate:"https://images.unsplash.com/photo-1541344999736-83eca272f6fc?auto=format&fit=crop&w=700&q=85",
+pomegranate:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Indian%20Pomegranate%20(6214630099).jpg",
 watermelon:"https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=700&q=85",
 muskmelon:"https://images.unsplash.com/photo-1571575173700-afb9492e6a50?auto=format&fit=crop&w=700&q=85",
 papaya:"https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=700&q=85",
@@ -104,8 +104,8 @@ pineapple:"https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format
 kiwi:"https://images.unsplash.com/photo-1585059895524-72359e06133a?auto=format&fit=crop&w=700&q=85",
 strawberry:"https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=700&q=85",
 pear:"https://images.unsplash.com/photo-1514756331096-242fdeb70d4a?auto=format&fit=crop&w=700&q=85",
-lychee:"https://images.unsplash.com/photo-1621073112816-0c0b1c4b8b9d?auto=format&fit=crop&w=700&q=85",
-sapodilla:"https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&w=700&q=85",
+lychee:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Litchi%20chinensis%20on%20black%20background.jpg",
+sapodilla:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Chikoo.JPG",
 potato:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=700&q=85",
 onion:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Onion%20vegetable.jpg",
 tomato:"https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=700&q=85",
@@ -141,7 +141,7 @@ mint:"https://images.unsplash.com/photo-1628556270448-4d4e4148e1d1?auto=format&f
 "sweet-potato":"https://images.unsplash.com/photo-1596097635121-14b63a7e4c8f?auto=format&fit=crop&w=700&q=85",
 "raw-banana":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Raw%20banana.jpg"
 };
-function photoFor(slug){return photoSets[slug]||photoSets.apple}
+function photoFor(slug){return (photoSets[slug]||photoSets.apple)+"?v=fruitfix1"}
 function fallbackPhoto(name,type){
 const bg=type==="Fruits"?"f6ead8":"e5f2df";
 const accent=type==="Fruits"?"d9822b":"3b8f4b";
