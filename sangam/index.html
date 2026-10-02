@@ -9,13 +9,13 @@
 ['Aashirvaad Atta 5kg',280,'atta','https://www.sujash.co.uk/cdn/shop/files/ITC531215_ITC_161001_0126_ASVD_WW_5kg_ATTA_AUS_V44F_FOP.png?v=1765434648'],
 ['Basmati Rice 5kg',420,'atta','https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/67b2e561385292e41143b89a/690225106474_1.jpg'],
 ['Tata Salt 1kg',28,'oil','https://i5.walmartimages.com/asr/1adaeb8b-12df-4a5a-a2dd-44ee836fd5d4.0370de4e2add5e7714333e86c586edc9.jpeg'],
-['Toor Dal 1kg',145,'dal','https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8e007e164455591.63f708e5d4fa2.jpeg'],
-['Moong Dal 1kg',130,'dal','https://www.jiomart.com/images/product/original/493721165/independence-moong-dal-1-kg-product-images-o493721165-p609585467-0-202407261741.jpg?im=Resize%3D%281000%2C1000%29'],
-['Sugar 1kg',48,'oil','https://madhursugar.com/assets/images/madhur-sugar-green-pack.png'],
-['Fortune Oil 1L',145,'oil','https://image.cdn.shpy.in/278008/SKU-0935_0-1745058569487.jpg?format=webp'],
-['Turmeric Powder 200g',48,'oil','https://aachifoods.com/cdn/shop/files/turmeric-powder-200g.webp?v=1769253323&width=370'],
-['Parle-G Biscuits',20,'snacks','https://img.buzzfeed.com/buzzfeed-static/static/2021-05/6/18/asset/915d29b0e633/sub-buzz-478-1620327238-8.jpg'],
-['Namkeen 200g',55,'snacks','https://www.littleindia.pl/media/products/f74e88d21856c5d52fd0822a33742d50/images/thumbnail/big_fop-8439c8af-a5f5-4695-a351-fd8e15b6ca97.png?lm=1764314533'],
+['Toor Dal 1kg',145,'dal','https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/668c6b76b1a60601e446b9e3/badhora-sai-pm-2-800x800.jpg'],
+['Moong Dal 1kg',130,'dal','https://spicedivine.ca/cdn/shop/products/pixelcut-export--72_8c6abc22-8598-40a4-b935-9fc75144ae99_512x512.png?v=1759808669'],
+['Sugar 1kg',48,'oil','https://tiimg.tistatic.com/fp/1/008/046/sulfur-free-natural-hygienic-indian-crystal-white-granulated-sweet-sugar-989.jpg'],
+['Fortune Oil 1L',145,'oil','https://www.bbassets.com/media/uploads/p/l/40161771_7-fortune-sunflower-oil.jpg'],
+['Turmeric Powder 200g',48,'oil','https://www.centralkirana.com/images/products/spices/turmeric%20powder.webp'],
+['Parle-G Biscuits',20,'snacks','https://cdn.dotpe.in/longtail/store-items/9367125/1UcyHrKm.webp'],
+['Namkeen 200g',55,'snacks','https://cdn.dotpe.in/longtail/store-items/8839286/BlD38Fcs.webp'],
 ['Surf Excel 1kg',120,'home','https://nayabazar.pk/images/products/WerIV8zNbf2H3Ox.webp'],
-['Colgate 200g',110,'personal','https://img.clevup.in/48107/1640953936212_SKU-1420_0.jpg?format=webp&width=600']
+['Colgate 200g',110,'personal','https://cdn01.pharmeasy.in/dam/products_otc/046066/colgate-toothpaste-strong-teeth-dental-cream-200-g-anti-cavity-2.jpg']
 ];let cart=[],active='all';function render(){const q=(document.getElementById('search').value||'').toLowerCase();document.getElementById('grid').innerHTML=p.filter(x=>(active==='all'||x[2]===active)&&x[0].toLowerCase().includes(q)).map((x,i)=>'<article class="card"><div class="pic"><img src="'+x[3]+'" alt="'+x[0]+'" loading="lazy" onerror="this.style.display=\'none\'"></div><h3>'+x[0]+'</h3><div class="meta">Daily essential</div><div class="price">₹'+x[1]+'</div><button class="add" onclick="add('+i+')">ADD</button></article>').join('')}function add(i){cart.push(p[i]);update();document.getElementById('drawer').classList.add('open')}function update(){document.getElementById('count').textContent=cart.length;document.getElementById('items').innerHTML=cart.length?cart.map(x=>'<div class="item"><span>'+x[0]+'</span><b>₹'+x[1]+'</b></div>').join(''):'<p>Your cart is empty.</p>';document.getElementById('total').textContent=cart.reduce((s,x)=>s+x[1],0)}function toggleCart(){document.getElementById('drawer').classList.toggle('open')}function orderCart(){if(!cart.length)return;const text='Order from Sangam Kirana Store:%0A'+cart.map(x=>x[0]+' - ₹'+x[1]).join('%0A')+'%0ATotal: ₹'+cart.reduce((s,x)=>s+x[1],0);window.open('https://wa.me/919352749409?text='+text,'_blank')}document.getElementById('search').oninput=render;document.querySelectorAll('.cat').forEach(b=>b.onclick=()=>{document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.cat;render()});render();update();</script></body></html>
