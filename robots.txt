@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shyaaam6786-collab.github.io/https-shyamfruitagency.com-/sitemap.xml
