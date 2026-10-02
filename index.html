@@ -142,6 +142,12 @@ mint:"https://images.unsplash.com/photo-1628556270448-4d4e4148e1d1?auto=format&f
 "raw-banana":"https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=700&q=85"
 };
 function photoFor(slug){return photoSets[slug]||photoSets.apple}
+function fallbackPhoto(name,type){
+const bg=type==="Fruits"?"f6ead8":"e5f2df";
+const accent=type==="Fruits"?"d9822b":"3b8f4b";
+const svg='<svg xmlns="http://www.w3.org/2000/svg" width="700" height="450" viewBox="0 0 700 450"><rect width="700" height="450" rx="24" fill="#'+bg+'"/><circle cx="350" cy="205" r="125" fill="#'+accent+'" opacity=".18"/><circle cx="350" cy="205" r="82" fill="#'+accent+'" opacity=".8"/><text x="350" y="360" text-anchor="middle" font-family="Arial" font-size="34" font-weight="700" fill="#17351f">'+name+'</text><text x="350" y="402" text-anchor="middle" font-family="Arial" font-size="20" fill="#58705e">Fresh Produce</text></svg>';
+return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(svg)
+}
 function renderCats(){document.getElementById("cats").innerHTML=["All","Fruits","Vegetables"].map(c=>'<button class="cat '+(cat===c?"active":"")+'" onclick="setCat(\''+c+'\')">'+c+"</button>").join("")}
 function render(){
 renderCats();
@@ -150,7 +156,7 @@ let list=products.filter(p=>(cat==="All"||p[3]===cat)&&p[0].toLowerCase().includ
 document.getElementById("result").textContent=list.length+" items";
 document.getElementById("grid").innerHTML=list.map(p=>{
 let i=products.indexOf(p);
-return '<div class="card"><div class="pic"><img loading="lazy" src="'+photoFor(p[5])+'" alt="'+p[0]+'"></div><h3>'+p[0]+'</h3><div class="rating">Quality '+p[4]+' / 5</div><span class="price">₹'+p[1]+'</span> <span class="unit">/ '+p[2]+'</span><button class="add" onclick="add('+i+')">ADD TO CART</button></div>'
+return '<div class="card"><div class="pic"><img loading="lazy" src="'+photoFor(p[5])+'" alt="'+p[0]+'" onerror="this.onerror=null;this.src=fallbackPhoto(p[0],p[3])"></div><h3>'+p[0]+'</h3><div class="rating">Quality '+p[4]+' / 5</div><span class="price">₹'+p[1]+'</span> <span class="unit">/ '+p[2]+'</span><button class="add" onclick="add('+i+')">ADD TO CART</button></div>'
 }).join("")}
 function setCat(c){cat=c;render()}
 function add(i){cart[i]=(cart[i]||0)+1;updateCart();openCart()}
@@ -160,7 +166,7 @@ let keys=Object.keys(cart),total=0;
 document.getElementById("count").textContent=keys.reduce((s,k)=>s+cart[k],0);
 document.getElementById("cartitems").innerHTML=keys.length?keys.map(k=>{
 let p=products[k],t=p[1]*cart[k];total+=t;
-return '<div class="item"><img src="'+photoFor(p[5])+'" alt="'+p[0]+'"><div><b>'+p[0]+'</b><br>₹'+p[1]+' / '+p[2]+'</div><div class="qty"><button onclick="change('+k+',-1)">−</button><b>'+cart[k]+'</b><button onclick="change('+k+',1)">+</button></div></div>'
+return '<div class="item"><img src="'+photoFor(p[5])+'" alt="'+p[0]+'" onerror="this.onerror=null;this.src=fallbackPhoto(p[0],p[3])"><div><b>'+p[0]+'</b><br>₹'+p[1]+' / '+p[2]+'</div><div class="qty"><button onclick="change('+k+',-1)">−</button><b>'+cart[k]+'</b><button onclick="change('+k+',1)">+</button></div></div>'
 }).join(""):'<div class="empty">Your cart is empty.<br>Add fresh products to order.</div>';
 document.getElementById("total").textContent=total;
 document.getElementById("pay").href="upi://pay?pa=8955603395@ybl&pn=Shyam%20Fruit%20Agency&am="+total+"&cu=INR"
