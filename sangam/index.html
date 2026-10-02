@@ -45,7 +45,11 @@ const photoMap={
 'Amul Taaza Milk 1L':'https://cdn.grofers.com/cdn-cgi/image/f%3Dauto%2Cfit%3Dscale-down%2Cq%3D85%2Cmetadata%3Dnone%2Cw%3D480%2Ch%3D480/da/cms-assets/cms/product/ed444481-1f26-4813-ab7b-60f1d7a8a687.jpg',
 'Lays Magic Masala':'https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1776398906000-172.png',
 'Kurkure Masala Munch':'https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1780634830965-687.png',
-'Uncle Chipps':'https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1782185292662-91.png'
+'Uncle Chipps':'https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1782185292662-91.png',
+'Basmati Rice':'https://cdn.grofers.com/da/cms-assets/cms/product/2c1d0430-f73c-4ed2-9526-a5fd6b45552b.jpg',
+'India Gate Everyday Basmati Rice':'https://cdn.grofers.com/da/cms-assets/cms/product/2c1d0430-f73c-4ed2-9526-a5fd6b45552b.jpg',
+'India Gate Dubar Basmati Rice':'https://cdn.grofers.com/da/cms-assets/cms/product/2c1d0430-f73c-4ed2-9526-a5fd6b45552b.jpg',
+'Daawat Basmati Rice':'https://cdn.grofers.com/da/cms-assets/cms/product/2c1d0430-f73c-4ed2-9526-a5fd6b45552b.jpg'
 };
 function renderCats(){document.getElementById('cats').innerHTML=cats.map(c=>'<button class="cat '+(active===c[0]?'active':'')+'" onclick="setCat(\''+c[0]+'\')">'+c[1]+'</button>').join('')}
 function setCat(c){active=c;renderCats();render()}
