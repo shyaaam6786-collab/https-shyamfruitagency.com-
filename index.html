@@ -35,7 +35,7 @@
 <div id="grid" class="grid"></div>
 </div></main>
 
-<section class="info"><div class="wrap"><h2>Shyam Fruit Agency</h2><p>Fresh fruits and all kinds of vegetables. Easy ordering by cart and WhatsApp.</p><p class="partners">Partners: Karan Deora & Piyush Khichi</p><p>Jodhpur, Rajasthan &nbsp; | &nbsp; 8955603395 &nbsp; | &nbsp; UPI: 8955603395@ybl</p></div></section>
+<section class="info"><div class="wrap"><h2>Shyam Fruit Agency</h2><p>Fresh fruits and all kinds of vegetables. Easy ordering by cart and WhatsApp.</p><p class="partners">Partners: Karan Deora & Piyush Khichi</p><p>Jodhpur, Rajasthan &nbsp; | &nbsp; 8955603395 &nbsp; | &nbsp; UPI: 8955603395@ybl &nbsp; | &nbsp; WhatsApp: 8955603395 / +91 82390 48135</p></div></section>
 
 <button class="float" onclick="openCart()">View Cart</button>
 
@@ -43,7 +43,7 @@
 <div id="cartitems" class="cartitems"></div>
 <div class="checkout"><strong>Total: ₹<span id="total">0</span></strong>
 <input id="name" placeholder="Your name"><input id="phone" placeholder="Mobile number"><input id="address" placeholder="Delivery address">
-<button class="order" onclick="orderWhatsApp()">Order on WhatsApp</button>
+<button class="order" onclick="orderWhatsApp('918955603395')">Order on WhatsApp — 8955603395</button><button class="order" onclick="orderWhatsApp('918239048135')" style="margin-top:6px;background:#16833b">Order on WhatsApp — +91 82390 48135</button>
 <a id="pay" class="pay" href="#">Pay via UPI</a></div></aside>
 
 <script>
@@ -195,13 +195,13 @@ document.getElementById("pay").href="upi://pay?pa=8955603395@ybl&pn=Shyam%20Frui
 }
 function openCart(){document.getElementById("drawer").classList.add("open");updateCart()}
 function closeCart(){document.getElementById("drawer").classList.remove("open")}
-function orderWhatsApp(){
+function orderWhatsApp(number){
 let keys=Object.keys(cart);if(!keys.length){alert("Please add products first.");return}
 let n=document.getElementById("name").value||"Customer",ph=document.getElementById("phone").value||"",ad=document.getElementById("address").value||"";
 let lines=keys.map(k=>{let p=products[k],unit=p[2]==="kg"?priceFor(p,Number(cart[k].weight)):p[1];return p[0]+" ("+cart[k].label+") x "+cart[k].qty+" = ₹"+(unit*cart[k].qty)}).join("%0A");
 let total=keys.reduce((s,k)=>s+(products[k][2]==="kg"?priceFor(products[k],Number(cart[k].weight)):products[k][1])*cart[k].qty,0);
 let msg="New Order - Shyam Fruit Agency%0A%0AName: "+encodeURIComponent(n)+"%0AMobile: "+encodeURIComponent(ph)+"%0AAddress: "+encodeURIComponent(ad)+"%0A%0AItems:%0A"+lines+"%0A%0ATotal: ₹"+total;
-window.open("https://wa.me/918955603395?text="+msg,"_blank")
+window.open("https://wa.me/"+number+"?text="+msg,"_blank")
 }
 document.getElementById("search").addEventListener("input",render);render();updateCart();
 </script>
