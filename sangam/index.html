@@ -34,6 +34,19 @@ const cats=[['all','All'],['atta','Atta & Rice'],['dal','Dal & Pulses'],['oil','
 let products=JSON.parse(localStorage.getItem('sangamProducts')||'null')||base;
 let cart=JSON.parse(localStorage.getItem('sangamCart')||'[]'),active='all';
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const photoMap={
+'Banana':'https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1781861811153-216.png',
+'Onion':'https://cdn.grofers.com/da/cms-assets/cms/product/f53c1ea1-cfa0-438b-a14c-b4f5ebeed7dd.png',
+'English Cucumber':'https://cdn.grofers.com/da/cms-assets/cms/product/60c2cecc-5df5-48f4-8a55-194914079d59.png',
+'Green Capsicum':'https://cdn.grofers.com/da/cms-assets/cms/product/0908a205-26bf-4135-969a-9002b302069c.png',
+'Ginger':'https://cdn.grofers.com/da/cms-assets/cms/product/e7c9461c-4a81-46cc-8215-5f9155026a6e.png',
+'Potato':'https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1779767007480-819.png',
+'Aashirvaad Atta 5kg':'https://cdn.grofers.com/cdn-cgi/image/f%3Dauto%2Cfit%3Dscale-down%2Cq%3D85%2Cmetadata%3Dnone%2Cw%3D480%2Ch%3D480/da/cms-assets/cms/product/2c1d0430-f73c-4ed2-9526-a5fd6b45552b.jpg',
+'Amul Taaza Milk 1L':'https://cdn.grofers.com/cdn-cgi/image/f%3Dauto%2Cfit%3Dscale-down%2Cq%3D85%2Cmetadata%3Dnone%2Cw%3D480%2Ch%3D480/da/cms-assets/cms/product/ed444481-1f26-4813-ab7b-60f1d7a8a687.jpg',
+'Lays Magic Masala':'https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1776398906000-172.png',
+'Kurkure Masala Munch':'https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1780634830965-687.png',
+'Uncle Chipps':'https://cdn.grofers.com/da/cms-assets/cms/product/rc-upload-1782185292662-91.png'
+};
 function renderCats(){document.getElementById('cats').innerHTML=cats.map(c=>'<button class="cat '+(active===c[0]?'active':'')+'" onclick="setCat(\''+c[0]+'\')">'+c[1]+'</button>').join('')}
 function setCat(c){active=c;renderCats();render()}
 function render(){const q=(document.getElementById('search').value||'').toLowerCase();const list=products.filter(x=>(active==='all'||x[2]===active)&&x[0].toLowerCase().includes(q));document.getElementById('grid').innerHTML=list.map((x)=>{const i=products.indexOf(x);const qty=cart.filter(a=>a.i===i).reduce((s,a)=>s+a.q,0);const pic=x[4]?'<img src="'+x[4]+'" alt="'+esc(x[0])+'">':'<span class="emoji">'+(x[3]||'🛒')+'</span>';return '<article class="card"><div class="pic">'+pic+'</div><h3>'+esc(x[0])+'</h3><div class="meta">Daily essential</div><div class="row"><div class="price">₹'+x[1]+'</div>'+(qty?'<div class="qty"><button onclick="change('+i+',-1)">−</button><b>'+qty+'</b><button onclick="change('+i+',1)">+</button></div>':'<button class="add" onclick="change('+i+',1)">ADD</button>')+'</div></article>'}).join('')||'<p>No products found.</p>';updateCart()}
