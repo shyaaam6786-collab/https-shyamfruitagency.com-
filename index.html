@@ -42,7 +42,7 @@
 <aside id="drawer" class="drawer"><div style="display:flex;justify-content:space-between;align-items:center"><h2>Your Cart</h2><button class="close" onclick="closeCart()">Close</button></div>
 <div id="cartitems" class="cartitems"></div>
 <div class="checkout"><strong>Total: ₹<span id="total">0</span></strong>
-<input id="name" placeholder="Your name"><input id="phone" placeholder="Mobile number"><input id="address" placeholder="Delivery address">
+<input id="name" placeholder="Full Name" autocomplete="name"><input id="phone" placeholder="Mobile Number" inputmode="numeric" maxlength="10" autocomplete="tel"><input id="address" placeholder="House / Flat / Shop No. & Street" autocomplete="street-address"><input id="area" placeholder="Area / Locality"><div style="display:flex;gap:6px"><input id="city" placeholder="City" value="Jodhpur" style="flex:1"><input id="state" placeholder="State" value="Rajasthan" style="flex:1"></div><input id="pincode" placeholder="6-digit PIN Code" inputmode="numeric" maxlength="6" autocomplete="postal-code">
 <label style="display:block;margin:8px 0;font-weight:700"><input type="radio" name="payment" value="COD" checked> Cash on Delivery (COD)</label><button class="order" onclick="orderWhatsApp('918955603395')">Order on WhatsApp — 8955603395</button><button class="order" onclick="orderWhatsApp('918239048135')" style="margin-top:6px;background:#16833b">Order on WhatsApp — +91 82390 48135</button>
 <a id="pay" class="pay" href="#">Pay via UPI</a></div></aside>
 
@@ -197,10 +197,10 @@ function openCart(){document.getElementById("drawer").classList.add("open");upda
 function closeCart(){document.getElementById("drawer").classList.remove("open")}
 function orderWhatsApp(number){
 let keys=Object.keys(cart);if(!keys.length){alert("Please add products first.");return}
-let n=document.getElementById("name").value||"Customer",ph=document.getElementById("phone").value||"",ad=document.getElementById("address").value||"";
+let n=document.getElementById("name").value||"Customer",ph=document.getElementById("phone").value||"",ad=document.getElementById("address").value||"",area=document.getElementById("area").value||"",city=document.getElementById("city").value||"Jodhpur",state=document.getElementById("state").value||"Rajasthan",pin=document.getElementById("pincode").value||""; if(!/^\d{6}$/.test(pin)){alert("Please enter a valid 6-digit PIN Code.");return;}
 let lines=keys.map(k=>{let p=products[k],unit=p[2]==="kg"?priceFor(p,Number(cart[k].weight)):p[1];return p[0]+" ("+cart[k].label+") x "+cart[k].qty+" = ₹"+(unit*cart[k].qty)}).join("%0A");
 let total=keys.reduce((s,k)=>s+(products[k][2]==="kg"?priceFor(products[k],Number(cart[k].weight)):products[k][1])*cart[k].qty,0);
-let payment=document.querySelector('input[name="payment"]:checked')?.value||"COD"; let msg="New Order - Shyam Fruit Agency%0A%0AName: "+encodeURIComponent(n)+"%0AMobile: "+encodeURIComponent(ph)+"%0AAddress: "+encodeURIComponent(ad)+"%0APayment: "+encodeURIComponent(payment)+"%0A%0AItems:%0A"+lines+"%0A%0ATotal: ₹"+total;
+let payment=document.querySelector('input[name="payment"]:checked')?.value||"COD"; let msg="New Order - Shyam Fruit Agency%0A%0AName: "+encodeURIComponent(n)+"%0AMobile: "+encodeURIComponent(ph)+"%0AAddress: "+encodeURIComponent(ad)+", "+encodeURIComponent(area)+", "+encodeURIComponent(city)+", "+encodeURIComponent(state)+" - "+encodeURIComponent(pin)+"%0APayment: "+encodeURIComponent(payment)+"%0A%0AItems:%0A"+lines+"%0A%0ATotal: ₹"+total;
 window.open("https://wa.me/"+number+"?text="+msg,"_blank")
 }
 document.getElementById("search").addEventListener("input",render);render();updateCart();
