@@ -1,22 +1,129 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shyam Fruit Agency | Fresh Grocery</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f7f8f5;color:#17251b}button,input{font:inherit}.top{background:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid #eee}.bar{max-width:1180px;margin:auto;padding:12px 18px;display:flex;align-items:center;gap:20px}.logo{display:flex;align-items:center;gap:9px;font-weight:800;white-space:nowrap}.mark{background:#16833b;color:#fff;border-radius:10px;padding:10px;font-weight:900}.search{flex:1;max-width:600px;background:#f2f3ef;border:0;border-radius:10px;padding:13px 16px;outline:none}.cartbtn{background:#16833b;color:#fff;border:0;border-radius:10px;padding:12px 17px;font-weight:800;cursor:pointer}.hero{background:linear-gradient(110deg,#e9f7e9,#fff3d2);padding:34px 18px}.wrap{max-width:1180px;margin:auto}.hero h1{font-size:42px;margin:0 0 8px}.hero p{color:#5f6c62;margin:0}.cats{display:flex;gap:10px;overflow:auto;padding:18px 0}.cat{border:1px solid #dfe7df;background:#fff;border-radius:20px;padding:9px 15px;cursor:pointer;white-space:nowrap}.cat.active{background:#16833b;color:#fff;border-color:#16833b}.section{padding:10px 18px 60px}.title{display:flex;justify-content:space-between;align-items:center;margin:10px 0}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:#fff;border:1px solid #e7ebe5;border-radius:14px;padding:15px;position:relative}.pic{height:145px;background:#f5f8f2;border-radius:10px;display:grid;place-items:center;font-size:70px}.card h3{margin:12px 0 5px;font-size:17px}.price{font-weight:800}.unit{font-size:12px;color:#7a857d}.add{width:100%;margin-top:12px;border:1px solid #16833b;color:#16833b;background:#fff;border-radius:8px;padding:9px;font-weight:800;cursor:pointer}.add:hover{background:#16833b;color:#fff}.drawer{position:fixed;right:-430px;top:0;height:100%;width:min(420px,100%);background:#fff;z-index:40;box-shadow:-10px 0 30px #0002;transition:.25s;padding:20px;display:flex;flex-direction:column}.drawer.open{right:0}.close{border:0;background:#eee;border-radius:8px;padding:8px;cursor:pointer}.cartitems{flex:1;overflow:auto;margin:15px 0}.item{display:flex;gap:10px;align-items:center;border-bottom:1px solid #eee;padding:12px 0}.item .emoji{font-size:30px}.qty{display:flex;align-items:center;gap:7px;margin-left:auto}.qty button{border:1px solid #ddd;background:#fff;border-radius:6px;width:28px;height:28px;cursor:pointer}.checkout{border-top:1px solid #eee;padding-top:15px}.checkout input{width:100%;padding:11px;margin:5px 0;border:1px solid #ddd;border-radius:8px}.order{width:100%;background:#25d366;color:#fff;border:0;border-radius:9px;padding:13px;font-weight:800;cursor:pointer;margin-top:8px}.empty{text-align:center;color:#777;padding:30px}.info{padding:45px 18px;background:#17351f;color:#dce9df}.partners{color:#fff;font-weight:800}.float{position:fixed;right:18px;bottom:18px;z-index:15;background:#16833b;color:#fff;border:0;border-radius:50px;padding:14px 18px;font-weight:900;cursor:pointer}@media(max-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.bar{flex-wrap:wrap}.logo{width:auto}.search{order:3;flex-basis:100%}.hero h1{font-size:32px}.grid{grid-template-columns:repeat(2,1fr)}.pic{height:120px;font-size:55px}}</style></head><body>
-<header class="top"><div class="bar"><div class="logo"><span class="mark">SK</span><span>Shyam Fruit Agency<br><small style="color:#718078">Jodhpur</small></span></div><input id="search" class="search" placeholder="Search fruits & vegetables..."><button class="cartbtn" onclick="openCart()">🛒 Cart (<span id="count">0</span>)</button></div></header>
-<section class="hero"><div class="wrap"><h1>Fresh groceries, delivered with care.</h1><p>Fruits • Vegetables • Daily fresh produce — Jodhpur, Rajasthan</p></div></section>
-<main class="section"><div class="wrap"><div class="cats" id="cats"></div><div class="title"><div><h2>Fresh products</h2><small style="color:#718078">Indicative Jodhpur market/retail prices • confirm current price before order</small></div><span id="result" style="color:#718078"></span></div><div id="grid" class="grid"></div></div></main>
-<section class="info"><div class="wrap"><h2>Shyam Fruit Agency</h2><p>Fresh fruits and all kinds of vegetables. Easy ordering by cart and WhatsApp.</p><p class="partners">Partners: Karan Deora & Piyush Khichi</p><p>📍 Jodhpur, Rajasthan &nbsp; 📞 8955603395 &nbsp; UPI: 8955603395@ybl</p></div></section>
-<button class="float" onclick="openCart()">🛒 View Cart</button>
-<aside id="drawer" class="drawer"><div style="display:flex;justify-content:space-between;align-items:center"><h2>Your Cart</h2><button class="close" onclick="closeCart()">✕</button></div><div id="cartitems" class="cartitems"></div><div class="checkout"><strong>Total: ₹<span id="total">0</span></strong><input id="name" placeholder="Your name"><input id="phone" placeholder="Mobile number"><input id="address" placeholder="Delivery address"><button class="order" onclick="orderWhatsApp()">Order on WhatsApp</button><a id="pay" href="#" style="display:block;text-align:center;margin-top:10px;color:#16833b;font-weight:800">Pay via UPI</a></div></aside>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shyam Fruit Agency | Fresh Fruits & Vegetables</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f6f8f4;color:#17251b}button,input{font:inherit}.top{background:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid #e5e9e3}.bar{max-width:1200px;margin:auto;padding:11px 18px;display:flex;align-items:center;gap:18px}.logo{display:flex;align-items:center;gap:10px;font-weight:800;white-space:nowrap;font-size:18px}.mark{background:#16833b;color:#fff;border-radius:11px;padding:10px 9px}.logo small{color:#718078;font-size:12px}.search{flex:1;max-width:620px;background:#f2f5f0;border:1px solid #e1e7df;border-radius:10px;padding:13px 16px;outline:none}.search:focus{border-color:#16833b}.cartbtn{background:#16833b;color:#fff;border:0;border-radius:10px;padding:12px 17px;font-weight:800;cursor:pointer}.hero{background:linear-gradient(110deg,#e9f7e9,#fff5d8);padding:40px 18px}.wrap{max-width:1200px;margin:auto}.hero h1{font-size:43px;margin:0 0 8px;color:#146c35}.hero p{color:#5f6c62;margin:0;font-size:17px}.trust{display:flex;gap:22px;margin-top:22px;flex-wrap:wrap;color:#386146;font-weight:700}.cats{display:flex;gap:10px;overflow:auto;padding:20px 0 12px}.cat{border:1px solid #dfe7df;background:#fff;border-radius:22px;padding:9px 17px;cursor:pointer;white-space:nowrap}.cat.active{background:#16833b;color:#fff;border-color:#16833b}.section{padding:8px 18px 65px}.title{display:flex;justify-content:space-between;align-items:end;margin:10px 0 16px}.title h2{margin:0 0 5px}.title small{color:#718078}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:#fff;border:1px solid #e2e8e0;border-radius:14px;padding:11px;position:relative;box-shadow:0 2px 8px #17351f0a}.pic{height:180px;background:#f3f7f1;border-radius:11px;overflow:hidden}.pic img{width:100%;height:100%;object-fit:cover;display:block}.card h3{margin:12px 4px 5px;font-size:17px}.rating{font-size:13px;color:#d38b00;margin:0 4px 8px}.price{font-weight:800;margin-left:4px}.unit{font-size:12px;color:#7a857d}.add{width:100%;margin-top:12px;border:1px solid #16833b;color:#16833b;background:#fff;border-radius:8px;padding:10px;font-weight:800;cursor:pointer}.add:hover{background:#16833b;color:#fff}.drawer{position:fixed;right:-440px;top:0;height:100%;width:min(430px,100%);background:#fff;z-index:40;box-shadow:-10px 0 30px #0002;transition:.25s;padding:20px;display:flex;flex-direction:column}.drawer.open{right:0}.close{border:0;background:#eee;border-radius:8px;padding:8px;cursor:pointer}.cartitems{flex:1;overflow:auto;margin:15px 0}.item{display:flex;gap:10px;align-items:center;border-bottom:1px solid #eee;padding:12px 0}.item img{width:52px;height:52px;object-fit:cover;border-radius:8px}.qty{display:flex;align-items:center;gap:7px;margin-left:auto}.qty button{border:1px solid #ddd;background:#fff;border-radius:6px;width:28px;height:28px;cursor:pointer}.checkout{border-top:1px solid #eee;padding-top:15px}.checkout input{width:100%;padding:11px;margin:5px 0;border:1px solid #ddd;border-radius:8px}.order{width:100%;background:#25a958;color:#fff;border:0;border-radius:9px;padding:13px;font-weight:800;cursor:pointer;margin-top:8px}.pay{display:block;text-align:center;margin-top:10px;color:#16833b;font-weight:800;text-decoration:none;border:1px solid #cfe3d2;padding:11px;border-radius:9px}.empty{text-align:center;color:#777;padding:30px}.info{padding:45px 18px;background:#17351f;color:#dce9df}.partners{color:#fff;font-weight:800}.float{position:fixed;right:18px;bottom:18px;z-index:15;background:#16833b;color:#fff;border:0;border-radius:50px;padding:14px 18px;font-weight:900;cursor:pointer}@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:700px){.bar{flex-wrap:wrap}.logo{width:auto}.search{order:3;flex-basis:100%}.hero h1{font-size:32px}.grid{grid-template-columns:repeat(2,1fr)}.pic{height:150px}}@media(max-width:440px){.grid{grid-template-columns:1fr 1fr;gap:9px}.card{padding:8px}.pic{height:125px}.card h3{font-size:15px}.bar{gap:10px}.hero{padding:28px 16px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="bar">
+<div class="logo"><span class="mark">SK</span><span>Shyam Fruit Agency<br><small>Fresh Fruits & Vegetables | Jodhpur</small></span></div>
+<input id="search" class="search" placeholder="Search fruits & vegetables...">
+<button class="cartbtn" onclick="openCart()">Cart (<span id="count">0</span>)</button>
+</div></header>
+
+<section class="hero"><div class="wrap"><h1>Fresh Fruits & Vegetables</h1><p>Farm-fresh produce delivered with care across Jodhpur, Rajasthan.</p><div class="trust"><span>Fresh & Natural</span><span>Best Quality</span><span>Fair Prices</span><span>Easy WhatsApp Ordering</span></div></div></section>
+
+<main class="section"><div class="wrap">
+<div class="cats" id="cats"></div>
+<div class="title"><div><h2>Fresh Products</h2><small>Indicative Jodhpur market/retail prices • confirm current price before order</small></div><span id="result" style="color:#718078"></span></div>
+<div id="grid" class="grid"></div>
+</div></main>
+
+<section class="info"><div class="wrap"><h2>Shyam Fruit Agency</h2><p>Fresh fruits and all kinds of vegetables. Easy ordering by cart and WhatsApp.</p><p class="partners">Partners: Karan Deora & Piyush Khichi</p><p>Jodhpur, Rajasthan &nbsp; | &nbsp; 8955603395 &nbsp; | &nbsp; UPI: 8955603395@ybl</p></div></section>
+
+<button class="float" onclick="openCart()">View Cart</button>
+
+<aside id="drawer" class="drawer"><div style="display:flex;justify-content:space-between;align-items:center"><h2>Your Cart</h2><button class="close" onclick="closeCart()">Close</button></div>
+<div id="cartitems" class="cartitems"></div>
+<div class="checkout"><strong>Total: ₹<span id="total">0</span></strong>
+<input id="name" placeholder="Your name"><input id="phone" placeholder="Mobile number"><input id="address" placeholder="Delivery address">
+<button class="order" onclick="orderWhatsApp()">Order on WhatsApp</button>
+<a id="pay" class="pay" href="#">Pay via UPI</a></div></aside>
+
 <script>
 const products=[
-['Apple','🍎',110,'kg','Fruits',4.8],['Banana','🍌',50,'dozen','Fruits',4.7],['Orange','🍊',90,'kg','Fruits',4.6],['Mango','🥭',90,'kg','Fruits',4.8],['Grapes','🍇',100,'kg','Fruits',4.7],['Pomegranate','🍎',140,'kg','Fruits',4.9],
-['Potato','🥔',35,'kg','Vegetables',4.7],['Onion','🧅',65,'kg','Vegetables',4.6],['Tomato','🍅',35,'kg','Vegetables',4.7],['Carrot','🥕',50,'kg','Vegetables',4.8],['Cabbage','🥬',35,'kg','Vegetables',4.6],['Cauliflower','🥦',45,'kg','Vegetables',4.7],['Spinach','🥬',25,'bunch','Vegetables',4.8],['Capsicum','🫑',70,'kg','Vegetables',4.7],['Lemon','🍋',60,'kg','Vegetables',4.6],['Cucumber','🥒',35,'kg','Vegetables',4.7],['Peas','🫛',90,'kg','Vegetables',4.8],['Garlic','🧄',120,'kg','Vegetables',4.9]];
-let cart={},cat='All';const grid=document.getElementById('grid');
-function renderCats(){document.getElementById('cats').innerHTML=['All','Fruits','Vegetables'].map(c=>'<button class="cat '+(cat===c?'active':'')+'" onclick="setCat(\''+c+'\')">'+c+'</button>').join('')}
-function render(){renderCats();let q=document.getElementById('search').value.toLowerCase();let list=products.filter(p=>(cat==='All'||p[4]===cat)&&p[0].toLowerCase().includes(q));document.getElementById('result').textContent=list.length+' items';grid.innerHTML=list.map((p,i)=>'<div class="card"><div class="pic">'+p[1]+'</div><h3>'+p[0]+'</h3><span class="price">₹'+p[2]+'</span> <span class="unit">/ '+p[3]+'</span><button class="add" onclick="add('+products.indexOf(p)+')">ADD</button></div>').join('')}
-function setCat(c){cat=c;render()}function add(i){cart[i]=(cart[i]||0)+1;updateCart();openCart()}
+["Apple",110,"kg","Fruits",4.8,"apple"],
+["Banana",50,"dozen","Fruits",4.7,"banana"],
+["Orange",90,"kg","Fruits",4.6,"orange"],
+["Mango",90,"kg","Fruits",4.8,"mango"],
+["Grapes",100,"kg","Fruits",4.7,"grapes"],
+["Pomegranate",140,"kg","Fruits",4.9,"pomegranate"],
+["Watermelon",35,"kg","Fruits",4.7,"watermelon"],
+["Muskmelon",45,"kg","Fruits",4.6,"muskmelon"],
+["Papaya",55,"kg","Fruits",4.7,"papaya"],
+["Guava",65,"kg","Fruits",4.7,"guava"],
+["Pineapple",70,"piece","Fruits",4.8,"pineapple"],
+["Kiwi",180,"kg","Fruits",4.6,"kiwi"],
+["Strawberry",260,"box","Fruits",4.8,"strawberry"],
+["Pear",130,"kg","Fruits",4.7,"pear"],
+["Litchi",180,"kg","Fruits",4.7,"lychee"],
+["Chikoo",80,"kg","Fruits",4.6,"sapodilla"],
+["Potato",35,"kg","Vegetables",4.7,"potato"],
+["Onion",65,"kg","Vegetables",4.6,"onion"],
+["Tomato",35,"kg","Vegetables",4.7,"tomato"],
+["Carrot",50,"kg","Vegetables",4.8,"carrot"],
+["Cabbage",35,"kg","Vegetables",4.6,"cabbage"],
+["Cauliflower",45,"kg","Vegetables",4.7,"cauliflower"],
+["Spinach",25,"bunch","Vegetables",4.8,"spinach"],
+["Capsicum",70,"kg","Vegetables",4.7,"capsicum"],
+["Lemon",60,"kg","Vegetables",4.6,"lemon"],
+["Cucumber",35,"kg","Vegetables",4.7,"cucumber"],
+["Peas",90,"kg","Vegetables",4.8,"peas"],
+["Garlic",120,"kg","Vegetables",4.9,"garlic"],
+["Ginger",140,"kg","Vegetables",4.8,"ginger"],
+["Green Chilli",70,"kg","Vegetables",4.7,"green-chilli"],
+["Brinjal",45,"kg","Vegetables",4.6,"eggplant"],
+["Lady Finger",55,"kg","Vegetables",4.7,"okra"],
+["Bottle Gourd",35,"kg","Vegetables",4.6,"bottle-gourd"],
+["Bitter Gourd",60,"kg","Vegetables",4.7,"bitter-gourd"],
+["Ridge Gourd",50,"kg","Vegetables",4.6,"ridge-gourd"],
+["Pumpkin",35,"kg","Vegetables",4.7,"pumpkin"],
+["Beetroot",55,"kg","Vegetables",4.7,"beetroot"],
+["Radish",35,"kg","Vegetables",4.6,"radish"],
+["Turnip",45,"kg","Vegetables",4.5,"turnip"],
+["Sweet Corn",60,"piece","Vegetables",4.8,"sweet-corn"],
+["Broccoli",100,"kg","Vegetables",4.8,"broccoli"],
+["French Beans",80,"kg","Vegetables",4.7,"green-beans"],
+["Cluster Beans",70,"kg","Vegetables",4.6,"cluster-beans"],
+["Drumstick",90,"kg","Vegetables",4.7,"drumstick"],
+["Mushroom",160,"pack","Vegetables",4.8,"mushroom"],
+["Coriander",20,"bunch","Vegetables",4.8,"coriander"],
+["Mint",20,"bunch","Vegetables",4.7,"mint"],
+["Spring Onion",50,"bunch","Vegetables",4.7,"spring-onion"],
+["Sweet Potato",55,"kg","Vegetables",4.8,"sweet-potato"],
+["Raw Banana",45,"kg","Vegetables",4.6,"raw-banana"]
+];
+
+let cart={},cat="All";
+const imageFor=slug=>"https://loremflickr.com/600/450/"+encodeURIComponent(slug)+"?lock="+(Math.abs(slug.split("").reduce((a,c)=>a+c.charCodeAt(0),0))%1000);
+function renderCats(){document.getElementById("cats").innerHTML=["All","Fruits","Vegetables"].map(c=>'<button class="cat '+(cat===c?"active":"")+'" onclick="setCat(\''+c+'\')">'+c+"</button>").join("")}
+function render(){
+renderCats();
+let q=document.getElementById("search").value.toLowerCase();
+let list=products.filter(p=>(cat==="All"||p[3]===cat)&&p[0].toLowerCase().includes(q));
+document.getElementById("result").textContent=list.length+" items";
+document.getElementById("grid").innerHTML=list.map(p=>{
+let i=products.indexOf(p);
+return '<div class="card"><div class="pic"><img loading="lazy" src="'+imageFor(p[5])+'" alt="'+p[0]+'"></div><h3>'+p[0]+'</h3><div class="rating">Quality '+p[4]+' / 5</div><span class="price">₹'+p[1]+'</span> <span class="unit">/ '+p[2]+'</span><button class="add" onclick="add('+i+')">ADD TO CART</button></div>'
+}).join("")}
+function setCat(c){cat=c;render()}
+function add(i){cart[i]=(cart[i]||0)+1;updateCart();openCart()}
 function change(i,d){cart[i]=(cart[i]||0)+d;if(cart[i]<=0)delete cart[i];updateCart()}
-function updateCart(){let keys=Object.keys(cart);document.getElementById('count').textContent=keys.reduce((s,k)=>s+cart[k],0);let total=0;document.getElementById('cartitems').innerHTML=keys.length?keys.map(k=>{let p=products[k],t=p[2]*cart[k];total+=t;return '<div class="item"><span class="emoji">'+p[1]+'</span><div><b>'+p[0]+'</b><br>₹'+p[2]+' / '+p[3]+'</div><div class="qty"><button onclick="change('+k+',-1)">−</button><b>'+cart[k]+'</b><button onclick="change('+k+',1)">+</button></div></div>'}).join(''):'<div class="empty">Your cart is empty.<br>Add fresh items to order.</div>';document.getElementById('total').textContent=total;document.getElementById('pay').href='upi://pay?pa=8955603395@ybl&pn=Shyam%20Fruit%20Agency&am='+total+'&cu=INR'}
-function openCart(){document.getElementById('drawer').classList.add('open');updateCart()}function closeCart(){document.getElementById('drawer').classList.remove('open')}
-function orderWhatsApp(){let keys=Object.keys(cart);if(!keys.length)return alert('Please add products first.');let n=document.getElementById('name').value||'Customer',ph=document.getElementById('phone').value||'',ad=document.getElementById('address').value||'';let lines=keys.map(k=>{let p=products[k];return p[0]+' x '+cart[k]+' = ₹'+(p[2]*cart[k])}).join('%0A');let total=keys.reduce((s,k)=>s+products[k][2]*cart[k],0);let msg='New Order - Shyam Fruit Agency%0A%0AName: '+encodeURIComponent(n)+'%0AMobile: '+encodeURIComponent(ph)+'%0AAddress: '+encodeURIComponent(ad)+'%0A%0AItems:%0A'+lines+'%0A%0ATotal: ₹'+total;window.open('https://wa.me/918955603395?text='+msg,'_blank')}
-document.getElementById('search').addEventListener('input',render);render();updateCart();
-</script></body></html>
+function updateCart(){
+let keys=Object.keys(cart),total=0;
+document.getElementById("count").textContent=keys.reduce((s,k)=>s+cart[k],0);
+document.getElementById("cartitems").innerHTML=keys.length?keys.map(k=>{
+let p=products[k],t=p[1]*cart[k];total+=t;
+return '<div class="item"><img src="'+imageFor(p[5])+'" alt="'+p[0]+'"><div><b>'+p[0]+'</b><br>₹'+p[1]+' / '+p[2]+'</div><div class="qty"><button onclick="change('+k+',-1)">−</button><b>'+cart[k]+'</b><button onclick="change('+k+',1)">+</button></div></div>'
+}).join(""):'<div class="empty">Your cart is empty.<br>Add fresh products to order.</div>';
+document.getElementById("total").textContent=total;
+document.getElementById("pay").href="upi://pay?pa=8955603395@ybl&pn=Shyam%20Fruit%20Agency&am="+total+"&cu=INR"
+}
+function openCart(){document.getElementById("drawer").classList.add("open");updateCart()}
+function closeCart(){document.getElementById("drawer").classList.remove("open")}
+function orderWhatsApp(){
+let keys=Object.keys(cart);if(!keys.length){alert("Please add products first.");return}
+let n=document.getElementById("name").value||"Customer",ph=document.getElementById("phone").value||"",ad=document.getElementById("address").value||"";
+let lines=keys.map(k=>{let p=products[k];return p[0]+" x "+cart[k]+" = ₹"+(p[1]*cart[k])}).join("%0A");
+let total=keys.reduce((s,k)=>s+products[k][1]*cart[k],0);
+let msg="New Order - Shyam Fruit Agency%0A%0AName: "+encodeURIComponent(n)+"%0AMobile: "+encodeURIComponent(ph)+"%0AAddress: "+encodeURIComponent(ad)+"%0A%0AItems:%0A"+lines+"%0A%0ATotal: ₹"+total;
+window.open("https://wa.me/918955603395?text="+msg,"_blank")
+}
+document.getElementById("search").addEventListener("input",render);render();updateCart();
+</script>
+</body>
+</html>
