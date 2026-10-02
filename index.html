@@ -150,7 +150,7 @@ let list=products.filter(p=>(cat==="All"||p[3]===cat)&&p[0].toLowerCase().includ
 document.getElementById("result").textContent=list.length+" items";
 document.getElementById("grid").innerHTML=list.map(p=>{
 let i=products.indexOf(p);
-return '<div class="card"><div class="pic"><img loading="lazy" src="'+imageFor(p[5])+'" alt="'+p[0]+'"></div><h3>'+p[0]+'</h3><div class="rating">Quality '+p[4]+' / 5</div><span class="price">₹'+p[1]+'</span> <span class="unit">/ '+p[2]+'</span><button class="add" onclick="add('+i+')">ADD TO CART</button></div>'
+return '<div class="card"><div class="pic"><img loading="lazy" src="'+photoFor(p[5])+'" alt="'+p[0]+'"></div><h3>'+p[0]+'</h3><div class="rating">Quality '+p[4]+' / 5</div><span class="price">₹'+p[1]+'</span> <span class="unit">/ '+p[2]+'</span><button class="add" onclick="add('+i+')">ADD TO CART</button></div>'
 }).join("")}
 function setCat(c){cat=c;render()}
 function add(i){cart[i]=(cart[i]||0)+1;updateCart();openCart()}
@@ -160,7 +160,7 @@ let keys=Object.keys(cart),total=0;
 document.getElementById("count").textContent=keys.reduce((s,k)=>s+cart[k],0);
 document.getElementById("cartitems").innerHTML=keys.length?keys.map(k=>{
 let p=products[k],t=p[1]*cart[k];total+=t;
-return '<div class="item"><img src="'+imageFor(p[5])+'" alt="'+p[0]+'"><div><b>'+p[0]+'</b><br>₹'+p[1]+' / '+p[2]+'</div><div class="qty"><button onclick="change('+k+',-1)">−</button><b>'+cart[k]+'</b><button onclick="change('+k+',1)">+</button></div></div>'
+return '<div class="item"><img src="'+photoFor(p[5])+'" alt="'+p[0]+'"><div><b>'+p[0]+'</b><br>₹'+p[1]+' / '+p[2]+'</div><div class="qty"><button onclick="change('+k+',-1)">−</button><b>'+cart[k]+'</b><button onclick="change('+k+',1)">+</button></div></div>'
 }).join(""):'<div class="empty">Your cart is empty.<br>Add fresh products to order.</div>';
 document.getElementById("total").textContent=total;
 document.getElementById("pay").href="upi://pay?pa=8955603395@ybl&pn=Shyam%20Fruit%20Agency&am="+total+"&cu=INR"
