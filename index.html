@@ -89,7 +89,59 @@ const products=[
 ];
 
 let cart={},cat="All";
-const imageFor=slug=>"https://loremflickr.com/600/450/"+encodeURIComponent(slug)+"?lock="+(Math.abs(slug.split("").reduce((a,c)=>a+c.charCodeAt(0),0))%1000);
+const photoSets={
+apple:"https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=700&q=85",
+banana:"https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=700&q=85",
+orange:"https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&w=700&q=85",
+mango:"https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=700&q=85",
+grapes:"https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=700&q=85",
+pomegranate:"https://images.unsplash.com/photo-1541344999736-83eca272f6fc?auto=format&fit=crop&w=700&q=85",
+watermelon:"https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=700&q=85",
+muskmelon:"https://images.unsplash.com/photo-1571575173700-afb9492e6a50?auto=format&fit=crop&w=700&q=85",
+papaya:"https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=700&q=85",
+guava:"https://images.unsplash.com/photo-1536511132770-e5058c7e8c46?auto=format&fit=crop&w=700&q=85",
+pineapple:"https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=700&q=85",
+kiwi:"https://images.unsplash.com/photo-1585059895524-72359e06133a?auto=format&fit=crop&w=700&q=85",
+strawberry:"https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=700&q=85",
+pear:"https://images.unsplash.com/photo-1514756331096-242fdeb70d4a?auto=format&fit=crop&w=700&q=85",
+lychee:"https://images.unsplash.com/photo-1621073112816-0c0b1c4b8b9d?auto=format&fit=crop&w=700&q=85",
+sapodilla:"https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&w=700&q=85",
+potato:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=700&q=85",
+onion:"https://images.unsplash.com/photo-1587049352846-4a222e784d14?auto=format&fit=crop&w=700&q=85",
+tomato:"https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=700&q=85",
+carrot:"https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=700&q=85",
+cabbage:"https://images.unsplash.com/photo-1598030343246-eec71cb44220?auto=format&fit=crop&w=700&q=85",
+cauliflower:"https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?auto=format&fit=crop&w=700&q=85",
+spinach:"https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=700&q=85",
+capsicum:"https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=700&q=85",
+lemon:"https://images.unsplash.com/photo-1590502593747-42a996133562?auto=format&fit=crop&w=700&q=85",
+cucumber:"https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&w=700&q=85",
+peas:"https://images.unsplash.com/photo-1589927986089-35812388d1f4?auto=format&fit=crop&w=700&q=85",
+garlic:"https://images.unsplash.com/photo-1540148426945-6cf22a6b2383?auto=format&fit=crop&w=700&q=85",
+ginger:"https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=700&q=85",
+"green-chilli":"https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=700&q=85",
+eggplant:"https://images.unsplash.com/photo-1610557892470-a56d92e4d9c5?auto=format&fit=crop&w=700&q=85",
+okra:"https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=700&q=85",
+"bottle-gourd":"https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&w=700&q=85",
+"bitter-gourd":"https://images.unsplash.com/photo-1628773822503-930a7eaecf80?auto=format&fit=crop&w=700&q=85",
+"ridge-gourd":"https://images.unsplash.com/photo-1603048719539-9ecb4f2a3b0f?auto=format&fit=crop&w=700&q=85",
+pumpkin:"https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=700&q=85",
+beetroot:"https://images.unsplash.com/photo-1607305387299-a3d9611cd469?auto=format&fit=crop&w=700&q=85",
+radish:"https://images.unsplash.com/photo-1593026125723-5e4f6b8c5f0b?auto=format&fit=crop&w=700&q=85",
+turnip:"https://images.unsplash.com/photo-1598030304671-8f6f5a8d6d9f?auto=format&fit=crop&w=700&q=85",
+"sweet-corn":"https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=700&q=85",
+broccoli:"https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=700&q=85",
+"green-beans":"https://images.unsplash.com/photo-1567375698348-5d9d5ae99de3?auto=format&fit=crop&w=700&q=85",
+"cluster-beans":"https://images.unsplash.com/photo-1598512752271-33f913a5af13?auto=format&fit=crop&w=700&q=85",
+drumstick:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=85",
+mushroom:"https://images.unsplash.com/photo-1504545102780-26774c1bb073?auto=format&fit=crop&w=700&q=85",
+coriander:"https://images.unsplash.com/photo-1588879460618-924c503a7c9d?auto=format&fit=crop&w=700&q=85",
+mint:"https://images.unsplash.com/photo-1628556270448-4d4e4148e1d1?auto=format&fit=crop&w=700&q=85",
+"spring-onion":"https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&w=700&q=85",
+"sweet-potato":"https://images.unsplash.com/photo-1596097635121-14b63a7e4c8f?auto=format&fit=crop&w=700&q=85",
+"raw-banana":"https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=700&q=85"
+};
+function photoFor(slug){return photoSets[slug]||photoSets.apple}
 function renderCats(){document.getElementById("cats").innerHTML=["All","Fruits","Vegetables"].map(c=>'<button class="cat '+(cat===c?"active":"")+'" onclick="setCat(\''+c+'\')">'+c+"</button>").join("")}
 function render(){
 renderCats();
