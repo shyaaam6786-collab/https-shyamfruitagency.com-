@@ -43,7 +43,7 @@
 <div id="cartitems" class="cartitems"></div>
 <div class="checkout"><strong>Total: ₹<span id="total">0</span></strong>
 <input id="name" placeholder="Your name"><input id="phone" placeholder="Mobile number"><input id="address" placeholder="Delivery address">
-<button class="order" onclick="orderWhatsApp('918955603395')">Order on WhatsApp — 8955603395</button><button class="order" onclick="orderWhatsApp('918239048135')" style="margin-top:6px;background:#16833b">Order on WhatsApp — +91 82390 48135</button>
+<label style="display:block;margin:8px 0;font-weight:700"><input type="radio" name="payment" value="COD" checked> Cash on Delivery (COD)</label><button class="order" onclick="orderWhatsApp('918955603395')">Order on WhatsApp — 8955603395</button><button class="order" onclick="orderWhatsApp('918239048135')" style="margin-top:6px;background:#16833b">Order on WhatsApp — +91 82390 48135</button>
 <a id="pay" class="pay" href="#">Pay via UPI</a></div></aside>
 
 <script>
@@ -200,7 +200,7 @@ let keys=Object.keys(cart);if(!keys.length){alert("Please add products first.");
 let n=document.getElementById("name").value||"Customer",ph=document.getElementById("phone").value||"",ad=document.getElementById("address").value||"";
 let lines=keys.map(k=>{let p=products[k],unit=p[2]==="kg"?priceFor(p,Number(cart[k].weight)):p[1];return p[0]+" ("+cart[k].label+") x "+cart[k].qty+" = ₹"+(unit*cart[k].qty)}).join("%0A");
 let total=keys.reduce((s,k)=>s+(products[k][2]==="kg"?priceFor(products[k],Number(cart[k].weight)):products[k][1])*cart[k].qty,0);
-let msg="New Order - Shyam Fruit Agency%0A%0AName: "+encodeURIComponent(n)+"%0AMobile: "+encodeURIComponent(ph)+"%0AAddress: "+encodeURIComponent(ad)+"%0A%0AItems:%0A"+lines+"%0A%0ATotal: ₹"+total;
+let payment=document.querySelector('input[name="payment"]:checked')?.value||"COD"; let msg="New Order - Shyam Fruit Agency%0A%0AName: "+encodeURIComponent(n)+"%0AMobile: "+encodeURIComponent(ph)+"%0AAddress: "+encodeURIComponent(ad)+"%0APayment: "+encodeURIComponent(payment)+"%0A%0AItems:%0A"+lines+"%0A%0ATotal: ₹"+total;
 window.open("https://wa.me/"+number+"?text="+msg,"_blank")
 }
 document.getElementById("search").addEventListener("input",render);render();updateCart();
