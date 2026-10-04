@@ -201,7 +201,7 @@ return '<div class="item"><img src="'+photoFor(p[5])+'" alt="'+p[0]+'" onerror="
 document.getElementById("total").textContent=total;
 document.getElementById("pay").href="upi://pay?pa=8955603395@ybl&pn=Shyam%20Fruit%20Agency&am="+total+"&cu=INR"
 }
-function openCart(){document.getElementById("drawer").classList.add("open");updateCart();setTimeout(()=>{if(!addressMap)initAddressMap();else addressMap.invalidateSize(true)},120)}
+function openCart(){document.getElementById("drawer").classList.add("open");updateCart();setTimeout(()=>{if(!addressMap)initAddressMap();else addressMap.invalidateSize(true)},180)}
 function closeCart(){document.getElementById("drawer").classList.remove("open")}
 function setPaymentStatus(method){const box=document.getElementById("paymentStatus");if(!box)return;box.querySelector("span").textContent=method==="COD"?"COD — Pay on Delivery":"UPI — Payment Pending";box.style.background=method==="COD"?"#eef7ee":"#fff7d6"}
 function paymentSubmitted(){const selected=document.querySelector('input[name="payment"]:checked')?.value||"COD";if(selected!=="UPI"){alert("Please select UPI Payment first.");return}localStorage.setItem("shyamPaymentStatus","verification_pending");const box=document.getElementById("paymentStatus");box.querySelector("span").textContent="PAYMENT SUBMITTED — VERIFICATION PENDING";box.style.background="#e8f7ee";alert("Payment submission noted. Order will show as Paid only after payment verification.")}
