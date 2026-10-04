@@ -47,13 +47,13 @@
 <div id="paymentStatus" style="margin:10px 0;padding:10px;border-radius:10px;background:#fff7d6;border:1px solid #eadb88;font-weight:700">Payment Status: <span>Pending</span></div>
 <label style="display:block;margin:8px 0;font-weight:700"><input type="radio" name="payment" value="COD" checked onchange="setPaymentStatus('COD')"> Cash on Delivery (COD)</label>
 <label style="display:block;margin:8px 0;font-weight:700"><input type="radio" name="payment" value="UPI" onchange="setPaymentStatus('UPI')"> UPI Payment</label>
-<button type="button" class="add" onclick="openRazorpay()" style="width:100%;margin-top:6px;background:#111;color:#fff;border-color:#111">💳 Pay Online — PhonePe / GPay / Paytm / Card</button>
+
 <button type="button" class="add" onclick="openUPIPayment()" style="width:100%;margin-top:4px">💳 Pay Now via UPI</button>
 <button type="button" class="add" onclick="paymentSubmitted()" style="width:100%;margin-top:6px;background:#16833b;color:#fff">✅ I Have Completed Payment</button><button class="order" onclick="orderWhatsApp('918955603395')">Order on WhatsApp — 8955603395</button><button class="order" onclick="orderWhatsApp('918239048135')" style="margin-top:6px;background:#16833b">Order on WhatsApp — +91 82390 48135</button>
 <a id="pay" class="pay" href="#">Pay via UPI</a></div></aside>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 <script>
 const products=[
 ["Apple (सेब)",110,"kg","Fruits",4.8,"apple"],
@@ -205,37 +205,6 @@ function openCart(){document.getElementById("drawer").classList.add("open");upda
 function closeCart(){document.getElementById("drawer").classList.remove("open")}
 function setPaymentStatus(method){const box=document.getElementById("paymentStatus");if(!box)return;box.querySelector("span").textContent=method==="COD"?"COD — Pay on Delivery":"UPI — Payment Pending";box.style.background=method==="COD"?"#eef7ee":"#fff7d6"}
 function paymentSubmitted(){const selected=document.querySelector('input[name="payment"]:checked')?.value||"COD";if(selected!=="UPI"){alert("Please select UPI Payment first.");return}localStorage.setItem("shyamPaymentStatus","verification_pending");const box=document.getElementById("paymentStatus");box.querySelector("span").textContent="PAYMENT SUBMITTED — VERIFICATION PENDING";box.style.background="#e8f7ee";alert("Payment submission noted. Order will show as Paid only after payment verification.")}
-const RAZORPAY_KEY_ID="YOUR_RAZORPAY_KEY_ID";
-function openRazorpay(){
- const total=Number(document.getElementById("total").textContent||0);
- if(!total){alert("Please add products first.");return}
- if(!RAZORPAY_KEY_ID || RAZORPAY_KEY_ID==="YOUR_RAZORPAY_KEY_ID"){
-   alert("Razorpay is ready on the website. Please add your Razorpay Key ID to enable online payment.");
-   return;
- }
- const options={
-   key:RAZORPAY_KEY_ID,
-   amount:Math.round(total*100),
-   currency:"INR",
-   name:"Shyam Fruit Agency",
-   description:"Fresh Fruits & Vegetables Order",
-   prefill:{
-     name:document.getElementById("name").value||"",
-     contact:document.getElementById("phone").value||""
-   },
-   theme:{color:"#16833b"},
-   handler:function(response){
-     localStorage.setItem("shyamRazorpayPaymentId",response.razorpay_payment_id||"");
-     localStorage.setItem("shyamPaymentStatus","verification_pending");
-     const box=document.getElementById("paymentStatus");
-     if(box){box.querySelector("span").textContent="PAYMENT RECEIVED — VERIFICATION PENDING";box.style.background="#e8f7ee"}
-     alert("Payment response received. Order will be marked PAID only after server-side verification.");
-   }
- };
- const rz=new Razorpay(options);
- rz.on("payment.failed",function(){alert("Payment failed or cancelled. Please try again.")});
- rz.open();
-}
 function openUPIPayment(){const total=Number(document.getElementById("total").textContent||0);if(!total){alert("Please add products first.");return}window.location.href="upi://pay?pa=8955603395@ybl&pn=Shyam%20Fruit%20Agency&am="+total+"&cu=INR"}
 function orderWhatsApp(number){
 let keys=Object.keys(cart);if(!keys.length){alert("Please add products first.");return}
@@ -247,7 +216,8 @@ window.open("https://wa.me/"+number+"?text="+msg,"_blank")
 }
 
 let addressMap,addressMarker;function initAddressMap(){addressMap=L.map("addressMap",{scrollWheelZoom:false}).setView([26.2389,73.0243],13);L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(addressMap);setTimeout(()=>addressMap.invalidateSize(true),150)}function setAddressPin(lat,lng){document.getElementById("lat").value=lat.toFixed(6);document.getElementById("lng").value=lng.toFixed(6);addressMap.invalidateSize(true);addressMap.setView([lat,lng],17);if(addressMarker)addressMarker.setLatLng([lat,lng]);else addressMarker=L.marker([lat,lng]).addTo(addressMap)}function useMyLocation(){if(!navigator.geolocation){alert("Location is not supported.");return}navigator.geolocation.getCurrentPosition(p=>setAddressPin(p.coords.latitude,p.coords.longitude),()=>alert("Location permission allow करें, फिर दोबारा कोशिश करें."),{enableHighAccuracy:true,timeout:10000})}
-function safeInitMap(){if(typeof L==="undefined"||!document.getElementById("addressMap"))return;initAddressMap()}
+function safeInitMap(){if(typeof L==="undefined"||!document.getElementById("addressMap"))return;requestAnimationFrame(()=>{initAddressMap();setTimeout(()=>addressMap.invalidateSize(true),500)})}
+safeInitMap();
 render();
 updateCart();
 </script>
