@@ -32,7 +32,8 @@ public class MainActivity extends Activity {
         root.addView(webView, new FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT
         ));
-        progress.setProgressTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.rgb(198, 255, 54)));\n        root.addView(progress, barParams);
+        progress.setProgressTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.rgb(198, 255, 54)));
+        root.addView(progress, barParams);
         setContentView(root);
 
         WebSettings settings = webView.getSettings();
