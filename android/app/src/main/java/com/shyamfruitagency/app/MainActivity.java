@@ -20,8 +20,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setStatusBarColor(android.graphics.Color.rgb(22, 101, 52));
-        getWindow().setNavigationBarColor(android.graphics.Color.rgb(20, 50, 35));
+        getWindow().setStatusBarColor(android.graphics.Color.rgb(6, 61, 37));
+        getWindow().setNavigationBarColor(android.graphics.Color.rgb(5, 45, 28));
 
         FrameLayout root = new FrameLayout(this);
         webView = new WebView(this);
@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
         root.addView(webView, new FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT
         ));
-        root.addView(progress, barParams);
+        progress.setProgressTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.rgb(198, 255, 54)));\n        root.addView(progress, barParams);
         setContentView(root);
 
         WebSettings settings = webView.getSettings();
