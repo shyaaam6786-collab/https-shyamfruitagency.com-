@@ -96,7 +96,7 @@ body{padding-bottom:88px!important}
 
 <main class="section"><div class="wrap">
 <div class="cats" id="cats"></div>
-<div style="max-width:1200px;margin:0 auto 14px;padding:11px 14px;background:#f3ecd9;border:1px solid #d8c38e;color:#355142;font-size:12px;line-height:1.5">Prices based on Jodhpur mandi modal rates + 10% margin where mandi data is available. Reference rates: 29 Oct 2026. Other items retain indicative listed prices; please confirm before purchase.</div><div style="max-width:1200px;margin:0 auto 14px;padding:11px 14px;background:#f3ecd9;border:1px solid #d8c38e;color:#355142;font-size:12px;line-height:1.5"><b>Seasonal selection • October–November</b><br>Jodhpur winter-season arrivals: guava, sitaphal, amla, mosambi, methi, bathua, sarson, peas, carrot, radish and leafy greens. Prices include an approximate 10% margin on the latest available mandi modal rates where reported; unreported items are indicative and should be confirmed at purchase.</div><div class="title"><div><h2>Fresh Products</h2><small>Indicative Jodhpur market/retail prices • confirm current price before order</small></div><span id="result" style="color:#718078"></span></div>
+<div style="max-width:1200px;margin:0 auto 14px;padding:11px 14px;background:#f3ecd9;border:1px solid #d8c38e;color:#355142;font-size:12px;line-height:1.5">Prices based on Jodhpur mandi modal rates + 10% margin where a matching per-kg report is available. Reference data through 30 Oct 2026 (commodity arrival dates vary). Other items retain indicative listed prices; please confirm before purchase. <a href="https://todaymarketrates.com/market/jodhpur-f-v-rajasthan/" target="_blank" rel="noopener">View Jodhpur mandi report</a>.</div><div style="max-width:1200px;margin:0 auto 14px;padding:11px 14px;background:#f3ecd9;border:1px solid #d8c38e;color:#355142;font-size:12px;line-height:1.5"><b>Seasonal selection • October–November</b><br>Jodhpur winter-season arrivals: guava, sitaphal, amla, mosambi, methi, bathua, sarson, peas, carrot, radish and leafy greens. Prices include an approximate 10% margin on the latest available mandi modal rates where reported; unreported items are indicative and should be confirmed at purchase.</div><div class="title"><div><h2>Fresh Products</h2><small>Indicative Jodhpur market/retail prices • confirm current price before order</small></div><span id="result" style="color:#718078"></span></div>
 <div id="grid" class="grid"></div>
 </div></main>
 
@@ -127,12 +127,12 @@ const products=[
 ["Grapes (अंगूर)",100,"kg","Fruits",4.7,"grapes"],
 ["Pomegranate (अनार)",99,"kg","Fruits",4.9,"pomegranate"],
 ["Custard Apple (सीताफल)",25,"kg","Fruits",4.8,"sapodilla"],
-["Amla (आंवला)",33,"kg","Fruits",4.7,"guava"],
+["Amla (आंवला)",39,"kg","Fruits",4.7,"guava"],
 ["Papaya (पपीता)",22,"kg","Fruits",4.7,"papaya"],
-["Guava (अमरूद)",50,"kg","Fruits",4.7,"guava"],
+["Guava (अमरूद)",39,"kg","Fruits",4.7,"guava"],
 ["Pineapple (अनानास)",33,"piece","Fruits",4.8,"pineapple"],
 ["Pear (नाशपाती)",130,"kg","Fruits",4.7,"pear"],
-["Chikoo (चीकू)",80,"kg","Fruits",4.6,"sapodilla"],
+["Chikoo (चीकू)",72,"kg","Fruits",4.6,"sapodilla"],
 ["Potato (आलू)",7,"kg","Vegetables",4.7,"potato"],
 ["Onion (प्याज)",30,"kg","Vegetables",4.6,"onion"],
 ["Tomato (टमाटर)",11,"kg","Vegetables",4.7,"tomato"],
@@ -143,26 +143,26 @@ const products=[
 ["Fenugreek Leaves (मेथी)",15,"bunch","Vegetables",4.8,"spinach"],
 ["Mustard Greens (सरसों का साग)",20,"bunch","Vegetables",4.7,"spinach"],
 ["Bathua (बथुआ)",15,"bunch","Vegetables",4.7,"spinach"],
-["Green Peas (हरी मटर)",77,"kg","Vegetables",4.8,"peas"],
-["Capsicum (शिमला मिर्च)",39,"kg","Vegetables",4.7,"capsicum"],
-["Lemon (नींबू)",66,"kg","Vegetables",4.6,"lemon"],
+["Green Peas (हरी मटर)",66,"kg","Vegetables",4.8,"peas"],
+["Capsicum (शिमला मिर्च)",33,"kg","Vegetables",4.7,"capsicum"],
+["Lemon (नींबू)",55,"kg","Vegetables",4.6,"lemon"],
 ["Radish (मूली)",11,"kg","Vegetables",4.6,"radish"],
-["Beetroot (चुकंदर)",22,"kg","Vegetables",4.7,"beetroot"],
+["Beetroot (चुकंदर)",39,"kg","Vegetables",4.7,"beetroot"],
 ["Turnip (शलजम)",45,"kg","Vegetables",4.5,"turnip"],
 ["Garlic (लहसुन)",110,"kg","Vegetables",4.9,"garlic"],
 ["Ginger (अदरक)",57,"kg","Vegetables",4.8,"ginger"],
-["Green Chilli (हरी मिर्च)",39,"kg","Vegetables",4.7,"green-chilli"],
+["Green Chilli (हरी मिर्च)",33,"kg","Vegetables",4.7,"green-chilli"],
 ["Brinjal (बैंगन)",11,"kg","Vegetables",4.6,"eggplant"],
 ["Lady Finger (भिंडी)",22,"kg","Vegetables",4.7,"okra"],
 ["Basmati Rice (बासमती चावल)",85,"kg","Rice",4.8,"rice"],
 ["Regular Rice (साधारण चावल)",48,"kg","Rice",4.6,"rice"],
 ["Wheat Flour (आटा)",38,"kg","Rice",4.7,"wheat"],
 ["Bottle Gourd (लौकी)",9,"kg","Vegetables",4.6,"bottle-gourd"],
-["Bitter Gourd (करेला)",24,"kg","Vegetables",4.7,"bitter-gourd"],
-["Ridge Gourd (तुरई)",50,"kg","Vegetables",4.6,"ridge-gourd"],
-["Pumpkin (कद्दू)",9,"kg","Vegetables",4.7,"pumpkin"],
+["Bitter Gourd (करेला)",28,"kg","Vegetables",4.7,"bitter-gourd"],
+["Ridge Gourd (तुरई)",28,"kg","Vegetables",4.6,"ridge-gourd"],
+["Pumpkin (कद्दू)",13,"kg","Vegetables",4.7,"pumpkin"],
 ["Sweet Potato (शकरकंद)",28,"kg","Vegetables",4.8,"sweet-potato"],
-["Cluster Beans (ग्वार फली)",66,"kg","Vegetables",4.6,"cluster-beans"],
+["Cluster Beans (ग्वार फली)",55,"kg","Vegetables",4.6,"cluster-beans"],
 ["Coriander (धनिया)",20,"bunch","Vegetables",4.8,"coriander"],
 ["Mint (पुदीना)",20,"bunch","Vegetables",4.7,"mint"],
 ["Spring Onion (हरा प्याज)",50,"bunch","Vegetables",4.7,"spring-onion"],
@@ -230,7 +230,7 @@ mint:"https://images.unsplash.com/photo-1628556270448-4d4e4148e1d1?auto=format&f
 "sweet-potato":"https://images.unsplash.com/photo-1596097635121-14b63a7e4c8f?auto=format&fit=crop&w=700&q=85",
 "raw-banana":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Raw%20banana.jpg"
 };
-function photoFor(slug){if(slug==="rice")return "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=700&q=85";if(slug==="wheat")return "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=700&q=85";return (photoSets[slug]||photoSets.apple)+"?v=fruitfix1"}
+function photoFor(slug){if(slug==="rice")return "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=700&q=85";if(slug==="wheat")return "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=700&q=85";const url=photoSets[slug]||photoSets.apple;return url+(url.includes("?")?"&":"?")+"v=fruitfix2"}
 function fallbackPhoto(name,type){
 const bg=type==="Fruits"?"f6ead8":"e5f2df";
 const accent=type==="Fruits"?"d9822b":"3b8f4b";
@@ -311,6 +311,6 @@ render();
 updateCart();
 </script>
 
-<section class="app-download" id="download-app"><div class="app-download-inner"><div class="app-icon">SK<span>FRESH</span></div><div class="app-download-copy"><span class="app-kicker">SHOP FASTER • STAY FRESH</span><h2>Get the Shyam Fruit Agency App</h2><p>Quick access to fresh fruits, vegetables and daily essentials in Jodhpur.</p></div><a class="app-download-btn" href="https://github.com/shyaaam6786-collab/https-shyamfruitagency.com-/actions/runs/41048391281" target="_blank" rel="noopener">DOWNLOAD ANDROID APP <span aria-hidden="true">↓</span></a></div></section>
+<section class="app-download" id="download-app"><div class="app-download-inner"><div class="app-icon">SK<span>FRESH</span></div><div class="app-download-copy"><span class="app-kicker">SHOP FASTER • STAY FRESH</span><h2>Get the Shyam Fruit Agency App</h2><p>Quick access to fresh fruits, vegetables and daily essentials in Jodhpur.</p></div><a class="app-download-btn" href="https://github.com/shyaaam6786-collab/https-shyamfruitagency.com-/actions/runs/41050163548" target="_blank" rel="noopener">DOWNLOAD ANDROID APP <span aria-hidden="true">↓</span></a></div></section>
 </body>
 </html>
