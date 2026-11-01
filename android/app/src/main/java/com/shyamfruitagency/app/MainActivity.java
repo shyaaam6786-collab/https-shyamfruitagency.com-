@@ -75,7 +75,10 @@ public class MainActivity extends Activity {
             }
         });
 
-        if (savedInstanceState == null || !webView.restoreState(savedInstanceState).equals(webView)) {
+        if (savedInstanceState != null) {
+            android.webkit.WebBackForwardList restored = webView.restoreState(savedInstanceState);
+            if (restored == null) webView.loadUrl(HOME_URL);
+        } else {
             webView.loadUrl(HOME_URL);
         }
     }
