@@ -39,10 +39,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp android/app/build/outputs/apk/debug/app-debug.apk Shyam-Fruit-Agency.apk
-          if gh release view v1.0.0 >/dev/null 2>&1; then
-            gh release upload v1.0.0 Shyam-Fruit-Agency.apk --clobber
+          if gh release view v1.0.1 >/dev/null 2>&1; then
+            gh release upload v1.0.1 Shyam-Fruit-Agency.apk --clobber
           else
-            gh release create v1.0.0 Shyam-Fruit-Agency.apk \
-              --title "Shyam Fruit Agency Android App v1.0.0" \
+            gh release create v1.0.1 Shyam-Fruit-Agency.apk \
+              --title "Shyam Fruit Agency Android App v1.0.1" \
               --notes "Official Android app for Shyam Fruit Agency. Install on Android devices."
           fi
