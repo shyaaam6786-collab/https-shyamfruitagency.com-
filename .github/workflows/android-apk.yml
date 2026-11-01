@@ -7,6 +7,9 @@ on:
       - 'android/**'
       - '.github/workflows/android-apk.yml'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,10 +27,22 @@ jobs:
           gradle-version: '8.7'
       - name: Build debug APK
         run: gradle -p android assembleDebug
-      - name: Upload APK
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: Shyam-Fruit-Agency-Android-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
+      - name: Publish APK to permanent GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk Shyam-Fruit-Agency.apk
+          if gh release view v1.0.0 >/dev/null 2>&1; then
+            gh release upload v1.0.0 Shyam-Fruit-Agency.apk --clobber
+          else
+            gh release create v1.0.0 Shyam-Fruit-Agency.apk \
+              --title "Shyam Fruit Agency Android App v1.0.0" \
+              --notes "Official Android app for Shyam Fruit Agency. Install on Android devices."
+          fi
