@@ -88,7 +88,7 @@ body{padding-bottom:88px!important}
 <body>
 <div class="announcement"><span>✦ Freshness you can trust</span><span>Jodhpur, Rajasthan</span><span>Orders: 8955603395</span></div><header class="top"><div class="bar">
 <div class="logo"><span class="brandlogo sk-emblem" aria-label="SK Shyam Fruit Agency"><svg viewBox="0 0 100 100" role="img" aria-label="SK classic monogram"><defs><linearGradient id="skGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5df9b"/><stop offset=".5" stop-color="#b88a35"/><stop offset="1" stop-color="#f8e5a6"/></linearGradient></defs><circle cx="50" cy="50" r="47" fill="#123c2b" stroke="url(#skGold)" stroke-width="2.5"/><circle cx="50" cy="50" r="41" fill="none" stroke="url(#skGold)" stroke-width="1"/><path d="M15 35 Q50 10 85 35" fill="none" stroke="url(#skGold)" stroke-width="1.4"/><text x="50" y="59" text-anchor="middle" font-family="Georgia,serif" font-size="38" font-weight="bold" fill="#fff8e6" letter-spacing="-4">SK</text><path d="M28 68 H72" stroke="url(#skGold)" stroke-width="1.4"/><text x="50" y="80" text-anchor="middle" font-family="Georgia,serif" font-size="7" letter-spacing="2" fill="#f2d58a">JODHPUR</text></svg></span><span class="brandcopy">Shyam Fruit Agency<br><small>FRESHNESS • QUALITY • TRUST</small></span><br><small>श्याम फ्रूट एजेंसी • जोधपुर</small></span></div>
-<input id="search" class="search" placeholder="Search fruits & vegetables...">
+<input id="search" class="search" placeholder="Search fruits & vegetables..." oninput="render()" autocomplete="off">
 <button class="cartbtn" onclick="openCart()">Cart (<span id="count">0</span>)</button>
 </div><nav class="classic-nav"><a href="#home">HOME</a><a href="#cats">SHOP PRODUCE</a><a href="#grid">OUR COLLECTION</a><a href="#about">ABOUT US</a><a href="#contact">CONTACT</a></nav></header>
 
@@ -96,7 +96,7 @@ body{padding-bottom:88px!important}
 
 <main class="section"><div class="wrap">
 <div class="cats" id="cats"></div>
-<div style="max-width:1200px;margin:0 auto 14px;padding:11px 14px;background:#f3ecd9;border:1px solid #d8c38e;color:#355142;font-size:12px;line-height:1.5">Prices based on Jodhpur (F&V) APMC modal rates + 10% margin where a matching per-kg report is available. Latest report available: 30 Oct 2026 (checked 2 Nov 2026; commodity arrival dates vary). Products without a matching per-kg rate, and products sold by dozen, piece, bunch or pack, retain indicative listed prices; please confirm before purchase. <a href="https://todaymarketrates.com/market/jodhpur-f-v-rajasthan/" target="_blank" rel="noopener">View Jodhpur mandi report</a>.</div><div style="max-width:1200px;margin:0 auto 14px;padding:11px 14px;background:#f3ecd9;border:1px solid #d8c38e;color:#355142;font-size:12px;line-height:1.5"><b>Seasonal selection • October–November</b><br>Jodhpur winter-season arrivals: guava, sitaphal, amla, mosambi, methi, bathua, sarson, peas, carrot, radish and leafy greens. Prices include an approximate 10% margin on the latest available mandi modal rates where reported; unreported items are indicative and should be confirmed at purchase.</div><div class="title"><div><h2>Fresh Products</h2><small>Indicative Jodhpur market/retail prices • confirm current price before order</small></div><span id="result" style="color:#718078"></span></div>
+<div style="max-width:1200px;margin:0 auto 14px;padding:11px 14px;background:#f3ecd9;border:1px solid #d8c38e;color:#355142;font-size:12px;line-height:1.5">Prices based on Jodhpur (F&V) APMC modal rates + 10% margin where a matching per-kg report is available. Latest matched commodity reports checked 3 Nov 2026 are dated 2 Nov 2026; individual crop reporting dates vary. Rates reported per quintal are converted to ₹/kg (÷100), then the 10% margin is applied and rounded to the nearest rupee. Items without a matching current per-kg report, and products sold by dozen, piece, bunch or pack, retain indicative prices; please confirm before purchase. <a href="https://www.bajarbhav.in/markets/jodhpur-f-v-apmc-rajasthan/apple" target="_blank" rel="noopener">View Jodhpur APMC commodity report</a>.</div><div style="max-width:1200px;margin:0 auto 14px;padding:11px 14px;background:#f3ecd9;border:1px solid #d8c38e;color:#355142;font-size:12px;line-height:1.5"><b>Seasonal selection • October–November</b><br>Jodhpur winter-season arrivals: guava, sitaphal, amla, mosambi, methi, bathua, sarson, peas, carrot, radish and leafy greens. Prices include a 10% margin on matched mandi modal rates where reported; unreported items remain indicative and should be confirmed at purchase.</div><div class="title"><div><h2>Fresh Products</h2><small>Indicative Jodhpur market/retail prices • confirm current price before order</small></div><span id="result" style="color:#718078"></span></div>
 <div id="grid" class="grid"></div>
 </div></main>
 
@@ -120,19 +120,19 @@ body{padding-bottom:88px!important}
 
 <script>
 const products=[
-["Apple (सेब)",66,"kg","Fruits",4.8,"apple"],
+["Apple (सेब)",61,"kg","Fruits",4.8,"apple"],
 ["Banana (केला)",50,"dozen","Fruits",4.7,"banana"],
 ["Orange (संतरा)",44,"kg","Fruits",4.6,"orange"],
 ["Sweet Lime (मौसंबी)",18,"kg","Fruits",4.7,"orange"],
 ["Grapes (अंगूर)",100,"kg","Fruits",4.7,"grapes"],
-["Pomegranate (अनार)",99,"kg","Fruits",4.9,"pomegranate"],
-["Custard Apple (सीताफल)",25,"kg","Fruits",4.8,"sapodilla"],
-["Amla (आंवला)",39,"kg","Fruits",4.7,"guava"],
+["Pomegranate (अनार)",105,"kg","Fruits",4.9,"pomegranate"],
+["Custard Apple (सीताफल)",22,"kg","Fruits",4.8,"sapodilla"],
+["Amla (आंवला)",28,"kg","Fruits",4.7,"guava"],
 ["Papaya (पपीता)",22,"kg","Fruits",4.7,"papaya"],
-["Guava (अमरूद)",39,"kg","Fruits",4.7,"guava"],
+["Guava (अमरूद)",28,"kg","Fruits",4.7,"guava"],
 ["Pineapple (अनानास)",33,"piece","Fruits",4.8,"pineapple"],
 ["Pear (नाशपाती)",130,"kg","Fruits",4.7,"pear"],
-["Chikoo (चीकू)",72,"kg","Fruits",4.6,"sapodilla"],
+["Chikoo (चीकू)",66,"kg","Fruits",4.6,"sapodilla"],
 ["Potato (आलू)",7,"kg","Vegetables",4.7,"potato"],
 ["Onion (प्याज)",30,"kg","Vegetables",4.6,"onion"],
 ["Tomato (टमाटर)",11,"kg","Vegetables",4.7,"tomato"],
@@ -143,11 +143,11 @@ const products=[
 ["Fenugreek Leaves (मेथी)",15,"bunch","Vegetables",4.8,"spinach"],
 ["Mustard Greens (सरसों का साग)",20,"bunch","Vegetables",4.7,"spinach"],
 ["Bathua (बथुआ)",15,"bunch","Vegetables",4.7,"spinach"],
-["Green Peas (हरी मटर)",66,"kg","Vegetables",4.8,"peas"],
+["Green Peas (हरी मटर)",77,"kg","Vegetables",4.8,"peas"],
 ["Capsicum (शिमला मिर्च)",33,"kg","Vegetables",4.7,"capsicum"],
-["Lemon (नींबू)",55,"kg","Vegetables",4.6,"lemon"],
+["Lemon (नींबू)",66,"kg","Vegetables",4.6,"lemon"],
 ["Radish (मूली)",11,"kg","Vegetables",4.6,"radish"],
-["Beetroot (चुकंदर)",39,"kg","Vegetables",4.7,"beetroot"],
+["Beetroot (चुकंदर)",28,"kg","Vegetables",4.7,"beetroot"],
 ["Turnip (शलजम)",45,"kg","Vegetables",4.5,"turnip"],
 ["Garlic (लहसुन)",110,"kg","Vegetables",4.9,"garlic"],
 ["Ginger (अदरक)",57,"kg","Vegetables",4.8,"ginger"],
